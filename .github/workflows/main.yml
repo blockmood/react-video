@@ -27,7 +27,7 @@ jobs:
       - name: Install & build
         run: yarn install && yarn build
       - name: Deploy 🚀
-        uses: blockmood/react-video@releases/v2
+        uses: actions/checkout@releases/v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
