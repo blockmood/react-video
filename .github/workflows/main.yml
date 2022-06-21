@@ -23,8 +23,3 @@ jobs:
         with:
           node: 16.14
       - run: yarn install && yarn build
-      - name: Deploy
-        with:
-          github_token: ${{secrets.VIDEO_ACCRESS_TOKEN}}
-          publish_dir: ./build
-          publish_branch: gh-pages
