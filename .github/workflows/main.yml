@@ -24,7 +24,6 @@ jobs:
           node: 16.14
       - run: yarn install && yarn build
       - name: Deploy
-        uses: blockmood/react-video@main
         with:
           github_token: ${{secrets.VIDEO_ACCRESS_TOKEN}}
           publish_dir: ./build
