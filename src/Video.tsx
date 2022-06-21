@@ -1,26 +1,39 @@
-import React, { useState } from 'react';
-import { Button, Input, message, Alert } from 'antd';
+import React, { useCallback, useState } from 'react';
+import { Button, Input, message, Alert, Select } from 'antd';
+
 import Marquee from 'react-fast-marquee';
 
 import API from './api/api';
 
 import './Video.less';
 
+const { Option } = Select;
+
 const Video =  () => {
 
-  const [ playUrl, setPlayUrl ] = useState('')
-  const [ playBtn, setPlayBtn ] = useState(false)
+  const [ inputValue, setInputValue] = useState<string>('');
+  const [ playUrl, setPlayUrl ] = useState<string>('');
+  const [ playBtn, setPlayBtn ] = useState<boolean>(false);
+  const [ nodeValue, setNodeValue ] = useState<any>(API['m3u8']);
 
-  const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayUrl(event.target.value.trim())
+  const changeInput = useCallback((event: React.ChangeEvent<HTMLInputElement>)=>{
+    setInputValue(event.target.value.trim())
+  },[])
+
+  const onChangeSelect = (event:React.ChangeEvent) => {
+    setNodeValue(event)
   }
 
   const play = () => {
-    if(!playUrl.length){
+    if(!inputValue.length){
       message.error('请输入要播放的链接地址')
       return
     }
-    setPlayUrl(API['m3u8'] + playUrl)
+    if(!/^(http:\/\/|https:\/\/).*/g.test(inputValue)){
+      message.error('请输入要正确的的页面地址')
+      return
+    }
+    setPlayUrl(nodeValue + inputValue)
     setPlayBtn(true)
   }
 
@@ -47,8 +60,23 @@ const Video =  () => {
       }/>
     </div>
     <div className='videoHeader'>
-      <Input onChange={changeInput} />
+      <Input onChange={changeInput} allowClear />
       <Button type="primary" onClick={play}>播放</Button>
+    </div>
+    <div className="tooltip">
+      <Select 
+        style={{width:'100%'}}
+        placeholder="请选择要解析视频的节点"
+        onChange={onChangeSelect}
+        >
+        {
+          Object.keys(API).map((Item,index) => {
+            return <Option key={Item} value={API[Item as keyof typeof API]}>
+              {`通用节点${index+1} ---  【稳定】`}
+            </Option>
+          })
+        }
+      </Select>
     </div>
     <div className='videoPlay'>
       {renderEmpty()}
