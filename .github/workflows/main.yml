@@ -22,7 +22,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node: 16.14
-      - name: npm install, build
       - run: yarn install && yarn build
       - name: Deploy
         uses: blockmood/react-video@v3
