@@ -31,7 +31,7 @@ const Video =  () => {
         </div>
       </>
     }
-    return <iframe src={playUrl} allowFullScreen={true} />
+    return <iframe title='video' src={playUrl} allowFullScreen={true} />
   }
 
   return <div className='videoBox'>
