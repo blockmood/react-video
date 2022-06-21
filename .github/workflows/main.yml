@@ -5,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@releases/v2
+      uses: actions/checkout@v2
 
     - name: Build and Deploy
-      uses: blockmood/react-video@releases/v2
+      uses: blockmood/react-video@v22
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: master # The branch the action should deploy from.
