@@ -3,6 +3,12 @@ const CracoLessPlugin = require("craco-less");
 const { loaderByName } = require("@craco/craco");
 
 module.exports = {
+  webpack: {
+    configure: (webpackConfig, { env, paths }) => {
+      webpackConfig.output.publicPath = './'
+      return webpackConfig;
+    }
+  },
   plugins: [
     { plugin: CracoAntDesignPlugin },
     {
