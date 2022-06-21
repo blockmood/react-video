@@ -26,4 +26,10 @@ jobs:
           node: 16.14
       - name: Install & build
         run: yarn install && yarn build
+      - name: Deploy 🚀
+        uses: blockmood/react-video@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
 
