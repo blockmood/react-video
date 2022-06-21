@@ -5,7 +5,9 @@ const { loaderByName } = require("@craco/craco");
 module.exports = {
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
-      webpackConfig.output.publicPath = './'
+      if(process.env.NODE_ENV !== 'development'){
+        webpackConfig.output.publicPath = './'
+      }
       return webpackConfig;
     }
   },

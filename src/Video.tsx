@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Input, message } from 'antd';
+import { Button, Input, message, Alert } from 'antd';
+import Marquee from 'react-fast-marquee';
 
 import API from './api/api';
 
@@ -35,6 +36,16 @@ const Video =  () => {
   }
 
   return <div className='videoBox'>
+    <div className="tooltip">
+      <Alert 
+        type="info" 
+        banner
+        message={
+        <Marquee pauseOnHover gradient={false}>
+          免费全网影视VIP视频vip会员免会员看电视剧电影！ 不能播放，可刷新更换接口！
+        </Marquee>
+      }/>
+    </div>
     <div className='videoHeader'>
       <Input onChange={changeInput} />
       <Button type="primary" onClick={play}>播放</Button>

@@ -1,6 +1,9 @@
 .videoBox{
   box-sizing: border-box;
   padding: 10px;
+  .tooltip{
+    margin-bottom: 10px;
+  }
 }
 .videoHeader{
   display: flex;
@@ -11,15 +14,23 @@
   width: 100%;
   iframe{
     width: 100%;
-    height: 300px;
+    height: 500px;
     background: #000;
   }
   .emptyBox{
     width: 100%;
-    height: 300px;
+    height: 500px;
     background: #000;
     color: #fff;
     display: grid;
     place-items: center;
+  }
+  @media screen and (max-width: 1180px) {
+    iframe{
+      height: 300px;
+    }
+    .emptyBox{
+      height: 300px;
+    }
   }
 }
