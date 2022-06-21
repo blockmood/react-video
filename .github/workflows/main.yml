@@ -8,7 +8,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v2
+      uses: blockmood/react-video@releases/v2
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: master # The branch the action should deploy from.
