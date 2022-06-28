@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Input, message, Alert, Select } from 'antd';
 
+import wx from 'weixin-sdk-js';
 import Marquee from 'react-fast-marquee';
 
 import API from './api/api';
@@ -15,6 +16,19 @@ const Video =  () => {
   const [ playUrl, setPlayUrl ] = useState<string>('');
   const [ playBtn, setPlayBtn ] = useState<boolean>(false);
   const [ nodeValue, setNodeValue ] = useState<any>(API['m3u8']);
+
+  useEffect(()=>{
+    wx.ready(()=>{
+      wx.updateTimelineShareData({ 
+        title: '8566视频解析', 
+        link: window.location.href,
+        imgUrl: '', // 分享图标
+        success: function () {
+          // 设置成功
+        }
+      })
+    })
+  },[])
 
   const changeInput = useCallback((event: React.ChangeEvent<HTMLInputElement>)=>{
     setInputValue(event.target.value.trim())
@@ -64,7 +78,8 @@ const Video =  () => {
       <Button type="primary" onClick={play}>播放</Button>
     </div>
     <div className="tooltip">
-      <Select 
+      <Select
+        defaultValue={nodeValue}
         style={{width:'100%'}}
         placeholder="请选择要解析视频的节点"
         onChange={onChangeSelect}

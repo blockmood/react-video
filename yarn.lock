@@ -9432,6 +9432,11 @@ websocket-extensions@>=0.1.1:
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
   integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
+weixin-sdk-js@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/weixin-sdk-js/-/weixin-sdk-js-1.0.11.tgz#216a6fcfd55501826aecaeedab22998e10e56912"
+  integrity sha512-6W84zHpBl/p7YxPYct58py4GGwK6ZYwETp/H7iAhmNEwdAAPIvfmzAj18YDBXqf5d0KwxuPLZU3S/tXl3uqDyg==
+
 whatwg-encoding@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/whatwg-encoding/-/whatwg-encoding-1.0.5.tgz#5abacf777c32166a51d085d6b4f3e7d27113ddb0"
