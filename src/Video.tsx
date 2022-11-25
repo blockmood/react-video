@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Input, message, Alert, Select } from 'antd';
 
-import wx from 'weixin-sdk-js';
 import Marquee from 'react-fast-marquee';
 
 import API from './api/api';
@@ -18,16 +17,7 @@ const Video =  () => {
   const [ nodeValue, setNodeValue ] = useState<any>(API['m3u8']);
 
   useEffect(()=>{
-    wx.ready(()=>{
-      wx.updateTimelineShareData({ 
-        title: '8566视频解析', 
-        link: window.location.href,
-        imgUrl: '', // 分享图标
-        success: function () {
-          // 设置成功
-        }
-      })
-    })
+    
   },[])
 
   const changeInput = useCallback((event: React.ChangeEvent<HTMLInputElement>)=>{
@@ -51,11 +41,14 @@ const Video =  () => {
     setPlayBtn(true)
   }
 
+  const randomHex = () => `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")}`;
+
+
   const renderEmpty = () => {
     if(!playBtn){
       return <>
-        <div className='emptyBox'>
-          放入视频地址后开始解析
+        <div className='emptyBox' style={{backgroundColor: randomHex()}}>
+          部分视频解析时间较长，请耐心等待。
         </div>
       </>
     }
@@ -74,7 +67,7 @@ const Video =  () => {
       }/>
     </div>
     <div className='videoHeader'>
-      <Input onChange={changeInput} allowClear />
+      <Input onChange={changeInput} allowClear placeholder='请放入需要解析的视频地址' />
       <Button type="primary" onClick={play}>播放</Button>
     </div>
     <div className="tooltip">
@@ -87,7 +80,7 @@ const Video =  () => {
         {
           Object.keys(API).map((Item,index) => {
             return <Option key={Item} value={API[Item as keyof typeof API]}>
-              {`通用节点${index+1} ---  【稳定】`}
+              {`${Item} ---  【稳定】`}
             </Option>
           })
         }
@@ -96,6 +89,7 @@ const Video =  () => {
     <div className='videoPlay'>
       {renderEmpty()}
     </div>
+    <div style={{textAlign:'center', marginTop:20}}>不定期更新解析资源，仅供学习使用，切勿用于商业。</div>
   </div>
 }
 
